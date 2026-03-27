@@ -1,0 +1,74 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# ========================
+# Virtual Environments
+# ========================
+.venv/
+venv/
+env/
+
+# ========================
+# Poetry
+# ========================
+poetry.lock
+
+# ========================
+# IDE
+# ========================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ========================
+# Environment / Secrets
+# ========================
+.env
+.env.local
+.env.production
+*.pem
+*.key
+
+# ========================
+# Testing
+# ========================
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# ========================
+# MyPy / Linting
+# ========================
+.mypy_cache/
+.ruff_cache/
+
+# ========================
+# Docker
+# ========================
+docker-compose.override.yml
+
+# ========================
+# AWS
+# ========================
+.aws/
+
+# ========================
+# Misc
+# ========================
+*.log
+tmp/
+temp/
