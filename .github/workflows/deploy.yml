@@ -38,6 +38,21 @@ jobs:
       - name: Run tests
         run: poetry run pytest -v --disable-warnings
 
+  smoke-test:
+    if: github.event_name == 'pull_request'
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t notes-manager:test .
+      - name: Start container and check liveness
+        run: |
+          docker run -d -p 8000:8000 --name app notes-manager:test
+          sleep 3
+          curl --fail http://localhost:8000/liveness
+          docker stop app
+
   build-and-push:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: test
