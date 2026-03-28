@@ -16,5 +16,8 @@ restart:
 	docker-compose down -v
 	docker-compose up --build
 
+docs:
+	open http://localhost:8000/docs
+
 info:
 	@$(POETRY) env info
