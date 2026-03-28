@@ -5,11 +5,19 @@ from sqlalchemy import Column, Integer, String, Boolean, DateTime, Enum
 
 from src.notes_manager.database import Base
 
+# =============================================================================
+#  Enum
+# =============================================================================
+
 
 class UserRole(str, enum.Enum):
     admin = "admin"
     editor = "editor"
     user = "user"
+
+# =============================================================================
+#  Model
+# =============================================================================
 
 
 class User(Base):
