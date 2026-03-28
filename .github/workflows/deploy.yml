@@ -38,6 +38,15 @@ jobs:
       - name: Run tests
         run: poetry run pytest -v --disable-warnings
 
+  build-check:
+    if: github.event_name == 'pull_request'
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t notes-manager:test .
+
   build-and-push:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: test
