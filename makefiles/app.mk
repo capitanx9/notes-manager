@@ -26,5 +26,6 @@ restart:
 	docker-compose down -v
 	docker-compose up --build
 
+.PHONY: docs
 docs:
 	open http://localhost:8000/docs
