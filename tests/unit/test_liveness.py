@@ -1,0 +1,4 @@
+def test_liveness(client):
+    response = client.get("/liveness")
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
