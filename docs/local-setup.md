@@ -4,23 +4,23 @@
 
 - Docker & Docker Compose
 - Make
-- Poetry (optional, for running tests locally)
 
-## Installation and Run
+That's it. No Python or Poetry needed to run the application.
+
+## Run the Application
 
 ```bash
 git clone https://github.com/capitanx9/notes-manager.git
 cd notes-manager
-make install    # copies .env.example → .env, generates JWT_SECRET_KEY, installs dependencies
-make run        # builds and starts Docker containers (FastAPI + PostgreSQL)
+make run
 ```
 
-The application will be available at `http://localhost:8000`.
+On first run, `make run` automatically:
+1. Creates `.env` from `.env.example`
+2. Generates a random `JWT_SECRET_KEY`
+3. Builds and starts Docker containers (FastAPI + PostgreSQL)
 
-`make install` does three things:
-1. Copies `.env.example` to `.env` if it doesn't exist
-2. Generates a random `JWT_SECRET_KEY` in `.env`
-3. Installs Python dependencies via Poetry
+The application will be available at `http://localhost:8000`.
 
 ## Swagger (API Documentation)
 
@@ -58,34 +58,46 @@ How to import:
 5. Run `Login (admin)` request first — it automatically saves the token
 6. All other requests will use the token automatically
 
-## Tests
+## Running Tests Locally (Optional)
+
+Tests can be run locally without Docker. This requires Python 3.10+ and Poetry.
 
 ```bash
+make install    # installs Poetry (if missing) and project dependencies
 make test       # run all tests
 make coverage   # run tests with coverage report
 ```
 
-Tests use SQLite in-memory database — no Docker required.
-
-## Make Commands
-
-| Command | Description |
-|---|---|
-| `make install` | Copy .env, generate JWT secret, install dependencies |
-| `make run` | Start Docker containers |
-| `make stop` | Stop Docker containers |
-| `make restart` | Recreate containers from scratch (resets database) |
-| `make test` | Run tests |
-| `make coverage` | Run tests with coverage report |
-| `make docs` | Open Swagger UI in browser |
-| `make info` | Show Poetry environment info |
-| `make clean` | Remove cache and build artifacts |
+`make install` is only needed for local testing — it has nothing to do with running the application.
 
 ## Stopping and Resetting
 
 ```bash
 make stop       # stop containers (data preserved)
-make restart    # stop, delete database volume, rebuild and start fresh
+make restart    # stop, delete database, rebuild and start fresh (re-runs init.sql)
 ```
 
-`make restart` is useful when you want to reset the database to its initial state (re-runs init.sql).
+## All Make Commands
+
+### Application (Docker)
+
+| Command | Description |
+|---|---|
+| `make run` | Create .env (if needed) and start Docker containers |
+| `make stop` | Stop Docker containers |
+| `make restart` | Recreate containers from scratch (resets database) |
+| `make docs` | Open Swagger UI in browser |
+
+### Testing (requires Poetry)
+
+| Command | Description |
+|---|---|
+| `make install` | Install Poetry (if missing) and project dependencies |
+| `make test` | Run tests |
+| `make coverage` | Run tests with coverage report |
+
+### Utilities
+
+| Command | Description |
+|---|---|
+| `make clean` | Remove cache and build artifacts |

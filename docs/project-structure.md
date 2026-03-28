@@ -44,8 +44,8 @@ notes-manager/
 │   ├── environment_localhost.json # Postman localhost variables
 │   └── environment_ec2.json       # Postman EC2 variables
 ├── makefiles/
-│   ├── app.mk                     # install, run, stop, restart, docs
-│   ├── test.mk                    # test, coverage
+│   ├── app.mk                     # run, stop, restart, docs (Docker)
+│   ├── test.mk                    # install, test, coverage (Poetry)
 │   └── utils.mk                   # clean
 ├── .env.example                   # Environment variables template
 ├── pyproject.toml                 # Dependencies (Poetry)
