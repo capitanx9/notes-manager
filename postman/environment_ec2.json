@@ -1,0 +1,22 @@
+{
+	"id": "b385d0ab-9ed0-420a-84b2-ab59c9c30e0e",
+	"name": "EC2",
+	"values": [
+		{
+			"key": "base_url",
+			"value": "http://35.156.68.160:8000",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"color": null,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-03-28T15:30:19.887Z",
+	"_postman_exported_using": "Postman/12.3.7"
+}
