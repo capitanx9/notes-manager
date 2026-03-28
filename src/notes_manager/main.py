@@ -1,14 +1,12 @@
 from fastapi import FastAPI
-import uvicorn
+
+from src.notes_manager.config import get_settings
+from src.notes_manager.database import engine
+from src.notes_manager.models import User, Article
 
 app = FastAPI()
-
+settings = get_settings()
 
 @app.get("/liveness")
 def liveness():
     return {"status": "ok"}
-
-
-if __name__ == "__main__":
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)

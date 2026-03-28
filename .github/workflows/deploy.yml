@@ -36,6 +36,9 @@ jobs:
           poetry install --no-root
 
       - name: Run tests
+        env:
+          DATABASE_URL: postgresql://notes_user:notes_pass@localhost:5432/notes_db
+          JWT_SECRET_KEY: test-secret-key
         run: poetry run pytest -v --disable-warnings
 
   smoke-test:
@@ -48,7 +51,7 @@ jobs:
         run: docker build -t notes-manager:test .
       - name: Start container and check liveness
         run: |
-          docker run -d -p 8000:8000 --name app notes-manager:test
+          docker run -d -p 8000:8000 --name app -e DATABASE_URL=postgresql://user:pass@localhost:5432/db -e JWT_SECRET_KEY=test notes-manager:test
           sleep 3
           curl --fail http://localhost:8000/liveness
           docker stop app
