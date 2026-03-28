@@ -5,7 +5,7 @@ class Settings(BaseSettings):
     database_url: str
     jwt_secret_key: str
 
-    model_config = {"env_file": ".env"}
+    model_config = {"env_file": ".env", "extra": "ignore"}
 
 @lru_cache
 def get_settings() -> Settings:
