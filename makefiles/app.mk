@@ -4,7 +4,11 @@ install:
 		sed -i '' "s/your-secret-key-here/$$(openssl rand -hex 32)/" .env; \
 		echo "Generated JWT_SECRET_KEY in .env"; \
 	fi
-	$(POETRY) install --no-root
+	@if ! command -v poetry >/dev/null 2>&1; then \
+		echo "Poetry not found. Installing..."; \
+		curl -sSL https://install.python-poetry.org | python3 -; \
+	fi
+	poetry install --no-root
 
 run:
 	docker-compose up --build
@@ -20,4 +24,4 @@ docs:
 	open http://localhost:8000/docs
 
 info:
-	@$(POETRY) env info
+	@poetry env info
