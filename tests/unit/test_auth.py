@@ -1,3 +1,9 @@
+
+# =============================================================================
+#  Login
+# =============================================================================
+
+
 def test_login_success(client, test_users):
     response = client.post("/auth/login", json={
         "email": "admin@test.com",
@@ -24,10 +30,18 @@ def test_login_nonexistent_email(client, test_users):
     })
     assert response.status_code == 401
 
+# =============================================================================
+#  Public Endpoint
+# =============================================================================
 
-def test_protected_endpoint_without_token(client):
+
+def test_liveness_is_public(client):
     response = client.get("/liveness")
     assert response.status_code == 200
+
+# =============================================================================
+#  All Roles
+# =============================================================================
 
 
 def test_login_all_roles(client, test_users):

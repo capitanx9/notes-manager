@@ -10,7 +10,6 @@ app = FastAPI(
     description="REST API for managing users and articles with role-based access control.",
     version="1.0.0",
 )
-settings = get_settings()
 
 app.include_router(auth_router, prefix="/auth", tags=["Auth"])
 app.include_router(article_router, prefix="/articles", tags=["Articles"])

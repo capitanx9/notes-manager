@@ -8,6 +8,10 @@ from src.notes_manager.services.auth_service import verify_access_token
 
 security = HTTPBearer()
 
+# =============================================================================
+#  Current User
+# =============================================================================
+
 
 def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
@@ -21,6 +25,10 @@ def get_current_user(
             detail="User not found",
         )
     return user
+
+# =============================================================================
+#  Role Check
+# =============================================================================
 
 
 def require_role(*roles: str):

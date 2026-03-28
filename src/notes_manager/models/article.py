@@ -6,10 +6,18 @@ from sqlalchemy.orm import relationship
 
 from src.notes_manager.database import Base
 
+# =============================================================================
+#  Enum
+# =============================================================================
+
 
 class ArticleStatus(str, enum.Enum):
     draft = "draft"
     published = "published"
+
+# =============================================================================
+#  Model
+# =============================================================================
 
 
 class Article(Base):
