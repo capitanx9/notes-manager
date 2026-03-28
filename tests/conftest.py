@@ -10,6 +10,10 @@ from src.notes_manager.main import app
 from src.notes_manager.models.user import User, UserRole
 from src.notes_manager.services.auth_service import hash_password, create_access_token
 
+# =============================================================================
+#  Database
+# =============================================================================
+
 TEST_DATABASE_URL = "sqlite://"
 
 engine = create_engine(
@@ -30,6 +34,10 @@ def db_session():
         session.close()
         Base.metadata.drop_all(bind=engine)
 
+# =============================================================================
+#  Client
+# =============================================================================
+
 
 @pytest.fixture()
 def client(db_session):
@@ -39,6 +47,10 @@ def client(db_session):
     app.dependency_overrides[get_db] = override_get_db
     yield TestClient(app)
     app.dependency_overrides.clear()
+
+# =============================================================================
+#  Users
+# =============================================================================
 
 
 @pytest.fixture()
@@ -75,6 +87,10 @@ def test_users(db_session):
     for user in users:
         db_session.refresh(user)
     return users
+
+# =============================================================================
+#  Tokens
+# =============================================================================
 
 
 @pytest.fixture()
